@@ -1,0 +1,18 @@
+llm:
+  base_url: http://192.168.2.57:11434/v1
+  model: qwen3.6:27b
+  api_key: ollama
+  timeout: 3600
+app:
+  d2_binary: d2
+  output_dir: ./output
+  recorder_script: ./recorder/record.js
+  active_agent: Draw-Agent.md
+  engine_override: auto
+export:
+  fps: 20
+  duration_sec: 3.0
+  max_width: 900
+  speed: 1.0
+  gif_fps: 15
+  gif_scale: 900

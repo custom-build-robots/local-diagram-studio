@@ -1,0 +1,63 @@
+examples:
+  - name: "Simple two-node flow"
+    engine: d2
+    description: "Minimal example with two nodes and an animated connection"
+    d2: |
+      a: "Node A"
+      b: "Node B"
+      a -> b: "data" {
+        style.animated: true
+      }
+
+  - name: "LAN with two zones"
+    engine: d2
+    description: "Two LAN containers with nodes and bidirectional flows"
+    d2: |
+      direction: down
+      lanA: LAN A {
+        server: "Server\n192.168.1.10"
+      }
+      lanB: LAN B {
+        client: "Client\n192.168.2.20"
+      }
+      lanA.server <-> lanB.client: "TCP" {
+        style.animated: true
+      }
+
+  - name: "Diagrams: web app on-prem"
+    engine: diagrams
+    description: "mingrammer Diagrams — load balancer, web tier, and a database"
+    code: |
+      from diagrams import Diagram, Cluster
+      from diagrams.onprem.network import Nginx
+      from diagrams.onprem.compute import Server
+      from diagrams.onprem.database import PostgreSQL
+
+      with Diagram("Web Service"):
+          lb = Nginx("load balancer")
+          with Cluster("Web Tier"):
+              web = [Server("web1"), Server("web2"), Server("web3")]
+          db = PostgreSQL("db")
+          lb >> web >> db
+
+  - name: "Diagrams: RAG stack"
+    engine: diagrams
+    description: "mingrammer Diagrams — app server with vector DB, cache, and LLM"
+    code: |
+      from diagrams import Diagram, Cluster
+      from diagrams.onprem.compute import Server
+      from diagrams.onprem.database import PostgreSQL
+      from diagrams.onprem.inmemory import Redis
+      from diagrams.onprem.network import Internet
+
+      with Diagram("RAG Stack"):
+          net = Internet("internet")
+          with Cluster("Company LAN"):
+              app = Server("app server")
+              vdb = PostgreSQL("vector db")
+              cache = Redis("cache")
+              llm = Server("LLM server")
+              app >> vdb
+              app >> cache
+              app >> llm
+          app >> net
