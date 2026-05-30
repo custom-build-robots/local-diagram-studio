@@ -37,7 +37,7 @@ Only install Graphviz if you want the Diagrams engine; only install ffmpeg + Nod
 
 ```bash
 # 1. Clone
-git clone https://github.com/custom-build-robots/local-diagram-studio/ d2-app && cd d2-app
+git clone https://github.com/custom-build-robots/local-diagram-studio.git d2-app && cd d2-app
 
 # 2. Main Python dependencies
 python -m venv .venv
