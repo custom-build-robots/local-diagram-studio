@@ -1,4 +1,4 @@
-# local-diagram-studio
+# local diagram studio
 
 A fully-local web app that turns a natural-language chat into **architecture diagrams**. A local LLM writes the diagram code, the app renders it live in the browser, and you export it as **SVG / PNG / MP4 / GIF**.
 
@@ -11,6 +11,8 @@ Two rendering engines, chosen by the selected agent (or pinned in the UI):
 
 Everything runs locally. The LLM is reached over any OpenAI-compatible endpoint
 (e.g. [Ollama](https://ollama.com)) no cloud services, no external APIs.
+
+![local-diagram-studio](local_diagram_studio.jpg)
 
 ## How it works
 
